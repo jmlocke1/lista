@@ -1,4 +1,11 @@
 {
+    "autoload": {
+        "psr-4": {
+            "App\\": "./",
+            "Controller\\" : "./controller",
+            "Model\\" : "./model"
+        }
+    },
     "require": {
         "duncan3dc/meta-audio": "^0.6.0",
         "wapmorgan/mp3info": "^0.1.0"
