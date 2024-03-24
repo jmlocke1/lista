@@ -1,6 +1,5 @@
 <?php
-// include_once __DIR__."/src/Mp3Info.php";
-require_once __DIR__ . "/vendor/autoload.php";
+require_once "config/app.php";
 
 use wapmorgan\Mp3Info\Mp3Info;
 
