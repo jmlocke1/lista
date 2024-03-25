@@ -13,7 +13,7 @@ $cdInfo = scan(scandir($cd), $cd);
 <body>
     <h1>Escaneando la unidad <?= $cd; ?></h1>
     <ul>
-    <?= listaHtml($cdInfo); ?>
+    <?= listaHtml($cdInfo, $cd); ?>
     </ul>
 </body>
 </html>
