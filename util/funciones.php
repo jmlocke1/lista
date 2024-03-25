@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/../config/app.php";
 use wapmorgan\Mp3Info\Mp3Info;
 
 /**
@@ -75,7 +76,7 @@ function listaHtml($fileInfo, $root){
             $html .= "</li>";
         }else{
             $html .= "<li>{$dir} - {$possibleFile}";
-            $html .= infoSongHtml($root."/",$possibleFile);
+            $html .= infoSongHtml($root."/".$possibleFile);
             $html .= "</li>";
         }
     }
@@ -84,8 +85,17 @@ function listaHtml($fileInfo, $root){
 
 function infoSongHtml($song){
     $info = new Mp3Info($song, true);
+    
     $html = "<ul>";
-    $html .= "<li></li>";
+    $html .= "<li>codecVersion: {$info->codecVersion}</li>";
+    $html .= "<li>layerVersion: {$info->layerVersion}</li>";
+    $html .= "<li>audioSize: {$info->audioSize}</li>";
+    $html .= "<li>duration: {$info->duration}</li>";
+    $html .= "<li>bitRate: {$info->bitRate}</li>";
+    $html .= "<li>sampleRate: {$info->sampleRate}</li>";
+    $html .= "<li>hasCover: ".($info->hasCover ? 'true' : 'false')."</li>";
+    
+    //$html .= "<li>Título: {$info->tags1['song']}</li>";
     $html .= "</ul>";
     return $html;
 }
