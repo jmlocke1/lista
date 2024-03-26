@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__."/../config/app.php";
 
-use App\helper\Mp3InfoHelper;
+use App\helpers\Mp3InfoHelper;
 use wapmorgan\Mp3Info\Mp3Info;
 
 /**
@@ -87,8 +87,8 @@ function listaHtml($fileInfo, $root){
 
 function infoSongHtml($song){
     $info = new Mp3Info($song, true);
+    // debuguearSinExit($info);
     $infoHelp = new Mp3InfoHelper($info);
-    debuguearSinExit($info);
     $html = "<ul>";
     $html .= "<li>codecVersion: {$info->codecVersion}</li>";
     $html .= "<li>layerVersion: {$info->layerVersion}</li>";
@@ -99,13 +99,19 @@ function infoSongHtml($song){
     $html .= "<li>sampleRate: {$info->sampleRate}</li>";
     $html .= "<li>hasCover: ".($info->hasCover ? 'true' : 'false')."</li>";
     
-    $html .= "<li>song: ".($info->tags2['TIT2'] ?? $info->tags1['song'] ?? $info->tags['song'] ?? '')."</li>";
-    $html .= "<li>artist: ".($info->tags2['TPE1'] ?? $info->tags1['artist'] ?? $info->tags['artist'] ?? '')."</li>";
-    $html .= "<li>album: ".($info->tags2['TALB'] ?? $info->tags1['album'] ?? $info->tags['album'] ?? '')."</li>";
-    $html .= "<li>year: ".($info->tags2['TYER'] ?? $info->tags1['year'] ?? $info->tags['year'] ?? '')."</li>";
-    $html .= "<li>comment: ".($info->tags2['COMM'] ?? $info->tags1['comment'] ?? $info->tags['comment'] ?? '')."</li>";
-    $html .= "<li>track: ".($info->tags2['TRCK'] ?? $info->tags1['track'] ?? $info->tags['track'] ?? '')."</li>";
-    $html .= "<li>genre: ".($info->tags2['TCON'] ?? $info->tags1['genre'] ?? $info->tags['genre'] ?? '')."</li>";
+    $html .= "<li>song: ".($infoHelp->song)."</li>";
+    $html .= "<li>artist: ".($infoHelp->artist)."</li>";
+    $html .= "<li title='The ‘Band/Orchestra/Accompaniment’ frame is used for additional information about the performers in the recording'>tpe2: ".($infoHelp->tpe2)."</li>";
+    $html .= "<li title='The ‘Conductor’ frame is used for the name of the conductor'>tpe3: ".($infoHelp->tpe3)."</li>";
+    $html .= "<li title='The ‘Interpreted, remixed, or otherwise modified by’ frame contains more information about the people behind a remix and similar interpretations of another existing piece'>tpe4: ".($infoHelp->tpe4)."</li>";
+    $html .= "<li title='The ‘Original artist/performer’ frame is intended for the performer of the original recording, if for example the music in the file should be a cover of a previously released song.'>tope: ".($infoHelp->tope)."</li>";
+    $html .= "<li>album: ".($infoHelp->album)."</li>";
+    $html .= "<li>composer: ".($infoHelp->composer)."</li>";
+    $html .= "<li>year: ".($infoHelp->year)."</li>";
+    $html .= "<li>comment: ".($infoHelp->comment)."</li>";
+    $html .= "<li>track: ".($infoHelp->track)."</li>";
+    $html .= "<li>genrev1: ".($infoHelp->genrev1)."</li>";
+    $html .= "<li>genrev2: ".($infoHelp->genrev2)."</li>";
     $html .= "</ul>";
     return $html;
 }
