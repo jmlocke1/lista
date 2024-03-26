@@ -1,0 +1,14 @@
+MÚSICA
+
+API DE DISCOGS
+
+Discogs es una base de datos online de música. Tiene una API en PHP para integrar en tus proyectos:
+https://github.com/calliostro/php-discogs-api
+
+
+GENRE
+
+El género es uno de los atributos del MP3. No siempre están bien puestos en los ficheros, y es un tanto subjetivo el clasificar una música en un determinado género.
+En Wikipedia hay una lista de géneros:
+https://en.wikipedia.org/wiki/List_of_ID3v1_genres
+En la base de datos hay una tabla con géneros, sus códigos y enlaces a wikipedia para casi todos ellos.

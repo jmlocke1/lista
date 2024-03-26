@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__."/../config/app.php";
+
+use App\helper\Mp3InfoHelper;
 use wapmorgan\Mp3Info\Mp3Info;
 
 /**
@@ -85,17 +87,25 @@ function listaHtml($fileInfo, $root){
 
 function infoSongHtml($song){
     $info = new Mp3Info($song, true);
-    
+    $infoHelp = new Mp3InfoHelper($info);
+    debuguearSinExit($info);
     $html = "<ul>";
     $html .= "<li>codecVersion: {$info->codecVersion}</li>";
     $html .= "<li>layerVersion: {$info->layerVersion}</li>";
     $html .= "<li>audioSize: {$info->audioSize}</li>";
+    $html .= "<li>filesize: ".filesize($song)."</li>";
     $html .= "<li>duration: {$info->duration}</li>";
     $html .= "<li>bitRate: {$info->bitRate}</li>";
     $html .= "<li>sampleRate: {$info->sampleRate}</li>";
     $html .= "<li>hasCover: ".($info->hasCover ? 'true' : 'false')."</li>";
     
-    //$html .= "<li>Título: {$info->tags1['song']}</li>";
+    $html .= "<li>song: ".($info->tags2['TIT2'] ?? $info->tags1['song'] ?? $info->tags['song'] ?? '')."</li>";
+    $html .= "<li>artist: ".($info->tags2['TPE1'] ?? $info->tags1['artist'] ?? $info->tags['artist'] ?? '')."</li>";
+    $html .= "<li>album: ".($info->tags2['TALB'] ?? $info->tags1['album'] ?? $info->tags['album'] ?? '')."</li>";
+    $html .= "<li>year: ".($info->tags2['TYER'] ?? $info->tags1['year'] ?? $info->tags['year'] ?? '')."</li>";
+    $html .= "<li>comment: ".($info->tags2['COMM'] ?? $info->tags1['comment'] ?? $info->tags['comment'] ?? '')."</li>";
+    $html .= "<li>track: ".($info->tags2['TRCK'] ?? $info->tags1['track'] ?? $info->tags['track'] ?? '')."</li>";
+    $html .= "<li>genre: ".($info->tags2['TCON'] ?? $info->tags1['genre'] ?? $info->tags['genre'] ?? '')."</li>";
     $html .= "</ul>";
     return $html;
 }
