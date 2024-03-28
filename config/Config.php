@@ -18,4 +18,8 @@ class Config {
      * Contraseña del usuario de la base de datos
      */
     const DB_PASSWORD = ConfigLocal::DB_PASSWORD;
+    /**
+     * Definimos la codificación de los caracteres
+     */
+    const DB_ENCODE = 'utf8';
 }
