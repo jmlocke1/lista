@@ -73,11 +73,16 @@ function listaHtml($fileInfo, $root){
     $html = "";
     foreach ($fileInfo as $dir => $possibleFile) {
         if(is_array($possibleFile)){
-            $html .= "<li>{$dir}";
+            $html .= "<li>Folder Name: {$dir}";
+            $html .= "<ul>";
+            $html .= "<li>artist: </li>";
+
             $html .= "<ul>".listaHtml($possibleFile, $root."/".$dir)."</ul>";
+            $html .= "</ul>";
             $html .= "</li>";
+    
         }else{
-            $html .= "<li>{$dir} - {$possibleFile}";
+            $html .= "<li>{$possibleFile}";
             $html .= infoSongHtml($root."/".$possibleFile);
             $html .= "</li>";
         }
@@ -86,9 +91,17 @@ function listaHtml($fileInfo, $root){
 }
 
 function infoSongHtml($song){
-    $info = new Mp3Info($song, true);
-    // debuguearSinExit($info);
-    $infoHelp = new Mp3InfoHelper($info);
+    try {
+        $info = new Mp3Info($song, true);
+        
+        $infoHelp = new Mp3InfoHelper($info);
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+        return;
+    }
+    
+    debuguearSinExit($info);
+    
     $html = "<ul>";
     $html .= "<li>codecVersion: {$info->codecVersion}</li>";
     $html .= "<li>layerVersion: {$info->layerVersion}</li>";
