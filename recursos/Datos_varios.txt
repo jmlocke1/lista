@@ -12,3 +12,9 @@ El género es uno de los atributos del MP3. No siempre están bien puestos en lo
 En Wikipedia hay una lista de géneros:
 https://en.wikipedia.org/wiki/List_of_ID3v1_genres
 En la base de datos hay una tabla con géneros, sus códigos y enlaces a wikipedia para casi todos ellos.
+
+Album
+
+Año de publicación - El año de publicación es la fecha en la que se publicó el álbum. Como la información contenida en los tracks es solamente el año, la fecha se mostrará como 1975-01-01
+Subtítulo - El subtítulo identifica el nombre específico de ese disco, por ejemplo, CD 1, o "Flamenco", en el caso de que sea un cd dedicado al flamenco en un recopilatorio
+

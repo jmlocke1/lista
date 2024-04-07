@@ -100,7 +100,7 @@ function infoSongHtml($song){
         return;
     }
     
-    debuguearSinExit($info);
+    // debuguearSinExit($info);
     
     $html = "<ul>";
     $html .= "<li>codecVersion: {$info->codecVersion}</li>";
