@@ -3,7 +3,7 @@ namespace Model;
 
 class Album extends \Model\ActiveRecord {
 	const TABLENAME = 'album';
-	protected static $columnsDB=['id', 'album_name', 'folder_name', 'artist', 'num_tracks', 'descripcion', 'publicado', 'ubicacion', 'num_ubicacion', 'parent', 'created_at', 'updated_at'];
+	protected static $columnsDB=['id', 'album_name', 'subtitle', 'folder_name', 'artist', 'num_tracks', 'descripcion', 'publicado', 'ubicacion', 'num_ubicacion', 'parent', 'created_at', 'updated_at'];
 	public static $foreignKeys = [
 		[
 			"COLUMN_NAME" => "parent",
@@ -21,6 +21,7 @@ class Album extends \Model\ActiveRecord {
 	protected static $setFunctions = [
 		'id' => 'setId',
 		'album_name' => 'setAlbumName',
+		'subtitle' => 'setSubtitle',
 		'folder_name' => 'setFolderName',
 		'artist' => 'setArtist',
 		'num_tracks' => 'setNumTracks',
@@ -36,6 +37,7 @@ class Album extends \Model\ActiveRecord {
 	public function __construct($args = []){
 		$this->id = $args['id'] ?? null;
 		$this->album_name = $args['album_name'] ?? null;
+		$this->subtitle = $args['subtitle'] ?? null;
 		$this->folder_name = $args['folder_name'] ?? null;
 		$this->artist = $args['artist'] ?? null;
 		$this->num_tracks = $args['num_tracks'] ?? null;
@@ -61,6 +63,15 @@ class Album extends \Model\ActiveRecord {
 		$length = strlen($album_name);
 		if($length >= 0 && $length <= 255){
 			$this->data['album_name'] = $album_name;
+		}else{
+			$this->setAlert('error', 'El texto supera la capacidad máxima del campo (0, 255)');
+		}
+	}
+
+	protected function setSubtitle(string $subtitle) {
+		$length = strlen($subtitle);
+		if($length >= 0 && $length <= 255){
+			$this->data['subtitle'] = $subtitle;
 		}else{
 			$this->setAlert('error', 'El texto supera la capacidad máxima del campo (0, 255)');
 		}
