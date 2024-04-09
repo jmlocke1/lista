@@ -14,15 +14,15 @@ class Mp3InfoHelper {
      */
     public $tpe2;
     /**
-     * The ‘Conductor’ frame is used for the name of the conductor.
+     * Director de la orquesta.
      */
     public $tpe3;
     /**
-     * The ‘Interpreted, remixed, or otherwise modified by’ frame contains more information about the people behind a remix and similar interpretations of another existing piece.
+     * El cuadro "Interpretado, remezclado o modificado de otro modo por" contiene más información sobre las personas detrás de un remix e interpretaciones similares de otra pieza existente.
      */
     public $tpe4;
     /**
-     * The ‘Original artist/performer’ frame is intended for the performer of the original recording, if for example the music in the file should be a cover of a previously released song.
+     * El cuadro "Artista/intérprete original" está destinado al intérprete de la grabación original, si, por ejemplo, la música del archivo debe ser una versión de una canción publicada anteriormente.
      */
     public $tope;
     public $album;

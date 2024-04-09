@@ -106,11 +106,12 @@ function infoSongHtml($song){
     $html .= "<li>codecVersion: {$info->codecVersion}</li>";
     $html .= "<li>layerVersion: {$info->layerVersion}</li>";
     $html .= "<li>audioSize: {$info->audioSize}</li>";
-    $html .= "<li>filesize: ".filesize($song)."</li>";
+    // $html .= "<li>filesize: ".filesize($song)."</li>";
     $html .= "<li>duration: {$info->duration}</li>";
     $html .= "<li>bitRate: {$info->bitRate}</li>";
     $html .= "<li>sampleRate: {$info->sampleRate}</li>";
     $html .= "<li>hasCover: ".($info->hasCover ? 'true' : 'false')."</li>";
+    $html .= "<li>channel: ".($info->channel)."</li>";
     
     $html .= "<li>song: ".($infoHelp->song)."</li>";
     $html .= "<li>artist: ".($infoHelp->artist)."</li>";
