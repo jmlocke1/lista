@@ -3,12 +3,13 @@ namespace Model;
 
 class Track extends \Model\ActiveRecord {
 	const TABLENAME = 'track';
-	protected static $columnsDB=['id', 'album_id', 'song', 'artist', 'tpe2', 'tpe3', 'tpe4', 'tope', 'album', 'composer', 'year', 'comment', 'track', 'genrev1', 'genrev2', 'codecversion', 'layerversion', 'audiosize', 'duration', 'bitrate', 'samplerate', 'hascover'];
+	protected static $columnsDB=['id', 'album_id', 'filename', 'song', 'artist', 'tpe2', 'tpe3', 'tpe4', 'tope', 'album', 'composer', 'year', 'comment', 'track', 'genrev1', 'genrev2', 'codecversion', 'layerversion', 'audiosize', 'duration', 'bitrate', 'samplerate', 'hascover', 'channel'];
 
 	protected static $getFunctions = [];
 	protected static $setFunctions = [
 		'id' => 'setId',
 		'album_id' => 'setAlbumId',
+		'filename' => 'setFilename',
 		'song' => 'setSong',
 		'artist' => 'setArtist',
 		'tpe2' => 'setTpe2',
@@ -28,12 +29,14 @@ class Track extends \Model\ActiveRecord {
 		'duration' => 'setDuration',
 		'bitrate' => 'setBitrate',
 		'samplerate' => 'setSamplerate',
-		'hascover' => 'setHascover'
+		'hascover' => 'setHascover',
+		'channel' => 'setChannel'
 	];
 
 	public function __construct($args = []){
 		$this->id = $args['id'] ?? null;
 		$this->album_id = $args['album_id'] ?? null;
+		$this->filename = $args['filename'] ?? null;
 		$this->song = $args['song'] ?? null;
 		$this->artist = $args['artist'] ?? null;
 		$this->tpe2 = $args['tpe2'] ?? null;
@@ -54,6 +57,7 @@ class Track extends \Model\ActiveRecord {
 		$this->bitrate = $args['bitrate'] ?? null;
 		$this->samplerate = $args['samplerate'] ?? null;
 		$this->hascover = $args['hascover'] ?? null;
+		$this->channel = $args['channel'] ?? null;
 	}
 
 	// Métodos Set
@@ -70,6 +74,15 @@ class Track extends \Model\ActiveRecord {
 			$this->data['album_id'] = $album_id;
 		}else{
 			$this->setAlert('error', 'El valor asignado al campo album_id está fuera del rango admitido (-2147483648, 2147483647)');
+		}
+	}
+
+	protected function setFilename(string $filename) {
+		$length = strlen($filename);
+		if($length >= 0 && $length <= 1024){
+			$this->data['filename'] = $filename;
+		}else{
+			$this->setAlert('error', 'El texto supera la capacidad máxima del campo (0, 1024)');
 		}
 	}
 
@@ -228,10 +241,19 @@ class Track extends \Model\ActiveRecord {
 	}
 
 	protected function setHascover(int $hascover) {
-		if($hascover >= -2147483648 && $hascover <= 2147483647){
+		if($hascover >= -128 && $hascover <= 127){
 			$this->data['hascover'] = $hascover;
 		}else{
-			$this->setAlert('error', 'El valor asignado al campo hascover está fuera del rango admitido (-2147483648, 2147483647)');
+			$this->setAlert('error', 'El valor asignado al campo hascover está fuera del rango admitido (-128, 127)');
+		}
+	}
+
+	protected function setChannel(string $channel) {
+		$length = strlen($channel);
+		if($length >= 0 && $length <= 60){
+			$this->data['channel'] = $channel;
+		}else{
+			$this->setAlert('error', 'El texto supera la capacidad máxima del campo (0, 60)');
 		}
 	}
 
