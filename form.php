@@ -24,8 +24,8 @@ if($percent > 90) echo "Ha pasado el corte";
                 <legend>Album: The Great Paris Concert CD1</legend>
 
                 <div class="campo">
-                    <label class="campo__label" for="album[0]['nombre']">Nombre Album</label>
-                    <input class="campo__field" ype="text" name="album[0]['nombre']" value="The Great Paris Concert">
+                    <label class="campo__label" for="album[0]['album_name']">Nombre Album</label>
+                    <input class="campo__field" ype="text" name="album[0]['album_name']" value="The Great Paris Concert">
                 </div>
                 <div class="campo">
                     <label class="campo__label" for="album[0]['subtitle']">Subtítulo Album</label>
@@ -36,23 +36,23 @@ if($percent > 90) echo "Ha pasado el corte";
                     <input class="campo__field" type="text" name="album[0]['artist']" value="Duke Ellington">
                 </div>
                 <div class="campo">
-                    <label class="campo__label" for="album[0]['folder']">Directorio</label>
-                    <input class="campo__field" type="text" name="album[0]['folder']" value="1963 - The Great Paris Concert CD1">
+                    <label class="campo__label" for="album[0]['folder_name']">Directorio</label>
+                    <input class="campo__field" type="text" name="album[0]['folder_name']" value="1963 - The Great Paris Concert CD1">
                 </div>
                 <?php 
                 $published = date('Y-m-d', strtotime('1973-01-01'));
                 ?>
                 <div class="campo">
-                    <label class="campo__label" for="album[0]['year']">Publicado</label>
-                    <input class="campo__field" type="date" name="album[0]['year']" value="<?= $published; ?>">
+                    <label class="campo__label" for="album[0]['publicado']">Publicado</label>
+                    <input class="campo__field" type="date" name="album[0]['publicado']" value="<?= $published; ?>">
                     <label class="campo__label" for="album[0]['num_tracks']">Número de tracks</label>
                     <input class="campo__field" type="number" name="album[0]['num_tracks']" value="10">
                 </div>
                 <div class="campo">
                     <label class="campo__label" for="album[0]['ubicacion']" title="">Ubicación</label>
                     <input class="campo__field" type="text" name="album[0]['ubicacion']" value="MP3">
-                    <label class="campo__label" for="album[0]['num_ubicacion']">Núm. ubicación</label>
-                    <input class="campo__field" type="number" name="album[0]['num_ubicacion']" value="10">
+                    <label class="campo__label" for="album[0][num_ubicacion]">Núm. ubicación</label>
+                    <input class="campo__field" type="number" name="album[0][num_ubicacion]" value="10">
                 </div>
                 
                 <div class="campo">
