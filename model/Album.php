@@ -51,7 +51,12 @@ class Album extends \Model\ActiveRecord {
 	}
 
 	// Métodos Set
-	protected function setId(int $id) {
+	protected function setId(int|string $id) {
+		if(is_numeric($id)){
+			$id = $id + 0;
+		}else{
+			$this->setAlert('error', 'El valor asignado al campo id no es numérico');
+		}
 		if($id >= -2147483648 && $id <= 2147483647){
 			$this->data['id'] = $id;
 		}else{
