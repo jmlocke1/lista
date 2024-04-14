@@ -1,1 +1,15 @@
 vendor
+log/
+nbproject
+
+# Eclipse
+.buildpath
+.project
+.settings
+.vscode
+
+
+.php-ini
+.php-version
+.node-version
+node_modules
