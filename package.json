@@ -33,7 +33,9 @@
     "sass": "^1.43.4"
   },
   "dependencies": {
-    "gulp-cli": "^2.3.0",
-    "datatables.net-dt": "^2.0.3"
+    "datatables.net-autofill-dt": "^2.7.0",
+    "datatables.net-buttons-dt": "^3.0.1",
+    "datatables.net-dt": "^2.0.3",
+    "gulp-cli": "^2.3.0"
   }
 }
