@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.no-margin {
+	margin: 0;
+}
+.no-padding {
+	padding: 0;
+}
+.centrar-texto {
+	text-align: center;
+}
+.mt-2{
+    margin-top: 2rem;
+}
+
+.boton {
+	display: block;
+	font-family: v.$fuenteHeading;
+	color: v.$blanco;
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-align: center;
+	padding: 1rem 3rem;
+	text-transform: uppercase;
+	margin-bottom: 2rem;
+	border: none;
+}
+@media(min-width: 768px) {
+	.boton {
+		display: inline-block;
+	}
+}
+.boton:hover {
+	cursor: pointer;
+}
+.boton--primario {
+	background-color: v.$negro;
+}
+.boton--secundario {
+	background-color: v.$primario;
+}
