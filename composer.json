@@ -8,6 +8,7 @@
     },
     "require": {
         "duncan3dc/meta-audio": "^0.6.0",
-        "wapmorgan/mp3info": "^0.1.0"
+        "wapmorgan/mp3info": "^0.1.0",
+        "katzgrau/klogger": "^1.2"
     }
 }

@@ -22,4 +22,8 @@ class Config {
      * Definimos la codificación de los caracteres
      */
     const DB_ENCODE = 'utf8';
+    /**
+     * Zona horaria para los logs
+     */
+    const LOG_TIME_ZONE = "Europe/Madrid";
 }
