@@ -36,6 +36,8 @@ class Config {
 	 */
 	const PAGES = [
 		'/',
-        '/musica'
+        '/musica',
+        '/comics',
+        '/peliculas'
 	];
 }
