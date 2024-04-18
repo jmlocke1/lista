@@ -1,44 +1,28 @@
 <?php
 namespace Controller;
 
+use App\config\Plugins;
+
 class IndexController {
     public static function index(array $args) {
-        $cssPersonal = <<<PRE
-
-    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.0.4/datatables.min.css" rel="stylesheet">
-
-PRE;
-        $javascriptPersonal = <<<PRE
-
-    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.0.4/datatables.min.js" defer></script>
-
-PRE;
         $router = $args['router'];
         $router->render('index/index', [
             'title' => 'Lista Principal',
+            'typeList' => 'Programas',
             'jsview' => 'index',
-            'cssPersonal' => $cssPersonal,
-            'javascriptPersonal' => $javascriptPersonal
+            'cssPersonal' => Plugins::DATATABLES_CSS,
+            'javascriptPersonal' => Plugins::DATATABLES_JS
         ]);
     }
 
     public static function musica(array $args) {
-        $cssPersonal = <<<PRE
-
-    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.0.4/datatables.min.css" rel="stylesheet">
-
-PRE;
-        $javascriptPersonal = <<<PRE
-
-    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.0.4/datatables.min.js" defer></script>
-
-PRE;
         $router = $args['router'];
         $router->render('index/musica', [
             'title' => 'Lista Principal',
+            'typeList' => 'Música',
             'jsview' => 'index',
-            'cssPersonal' => $cssPersonal,
-            'javascriptPersonal' => $javascriptPersonal
+            'cssPersonal' => Plugins::DATATABLES_CSS,
+            'javascriptPersonal' => Plugins::DATATABLES_JS
         ]);
     }
 }

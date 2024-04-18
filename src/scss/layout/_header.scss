@@ -1,26 +1,77 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.barra {
-    padding: 4rem;
+.nombre-sitio {
+	font-weight: 300;
+	text-align: center;
+	font-size: 3rem;
+	margin-bottom: 1rem;
+    span {
+        font-weight: 900;
+    }
+    @include m.tablet {
+        font-size: 5rem;
+    }
 
-    background-color: v.$gris;
+}
+
+.header {
+    min-height: 60rem;
+	/* background-image: url(../img/principal/road-1072823_1280.jpg); */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	padding: 5rem 0;
+    @include m.desktopXL;
+
+    .contenido-header {
+        display: flex;
+        flex-direction: column;
+        height: calc(60rem - 4rem);
+        justify-content: space-between;
+        color: v.$blanco;
+    }
+
+    a {
+        color: v.$negro;
+        font-size: 2rem;
+    }
+}
+
+
+.barra {
     @include m.tablet {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     .navegacion {
-        @include m.tablet {
-            display: flex;
-            gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 1rem;
+        border-radius: .5rem;
+
+        @include m.desktop {
+            flex-direction: row;
         }
 
         .navegacion__enlace {
-            display: block;
+            padding: .5rem;
+            transition: background-color 300ms;
+            width: 100%;
             text-align: center;
-            font-size: 1.8rem;
-            color: v.$primario;
+            color: v.$amarillo;
+            background: rgba(17, 16, 16, 0.5);
+            @include m.desktop{
+                padding: 1rem 2rem;
+            }
+            &:hover {
+                background-color: rgb(255 255 255 / .5);
+                color: v.$negro;
+                font-weight: 700;
+            }
         }
     }
     

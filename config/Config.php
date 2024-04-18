@@ -28,14 +28,14 @@ class Config {
     const LOG_TIME_ZONE = "Europe/Madrid";
     
 	const DIR_IMG_PRINCIPAL = '/build/img/principal/';
-	const ABSOLUTE_DIR_IMG_PRINCIPAL = DIR_ROOT . self::DIR_IMG_PRINCIPAL;
+	const ABSOLUTE_DIR_IMG_PRINCIPAL = DIR_ROOT . "/public/" . self::DIR_IMG_PRINCIPAL;
     const IMAGE_TYPES = ['jpg', 'webp', 'avif'];
     /**
 	 * Páginas que contiene esta aplicación. Se usan aquí para poner
 	 * una imagen de cabecera diferente cada día
 	 */
 	const PAGES = [
-		'index.php',
-        'musica.php'
+		'/',
+        '/musica'
 	];
 }

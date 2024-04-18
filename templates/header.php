@@ -1,6 +1,7 @@
 <?php 
 
 if(!isset($title)) $title = 'Lista';
+$background = imageOfTheDay();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,6 +12,11 @@ if(!isset($title)) $title = 'Lista';
 <?php if(isset($cssPersonal)){ 
     echo $cssPersonal;
 } ?>
+    <style>
+		.header {
+			background-image: url(<?= $background; ?>);
+		}
+	</style>
 
     <link rel="stylesheet" href="/build/css/app.css">
 <?php if(isset($javascriptPersonal)){ 
@@ -23,11 +29,17 @@ if(!isset($title)) $title = 'Lista';
 
 </head>
 <body>
-    <div class="contenedor">
-        <div class="barra">
-            <nav class="navegacion">
-                <a href="/" class="navegacion__enlace">Programas</a>
-                <a href="/musica" class="navegacion__enlace">Música</a>
-            </nav>
+    <header class="header">
+        <div class="contenedor contenido-header">
+            <div class="barra">
+                <div class="logo">
+					<div class="h1 nombre-sitio">Lista de <span><?= $typeList; ?></span></div>
+				</div>
+                <nav class="navegacion">
+                    <a href="/" class="navegacion__enlace">Programas</a>
+                    <a href="/musica" class="navegacion__enlace">Música</a>
+                </nav>
+            </div>
         </div>
-    </div>
+    </header>
+    
