@@ -1,0 +1,27 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.barra {
+    padding: 4rem;
+
+    background-color: v.$gris;
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .navegacion {
+        @include m.tablet {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navegacion__enlace {
+            display: block;
+            text-align: center;
+            font-size: 1.8rem;
+            color: v.$primario;
+        }
+    }
+    
+}
