@@ -331,13 +331,18 @@ body {
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1, h2, h3, h4 {
   font-family: "PT Sans", sans-serif;
   line-height: 1.2;
 }
 
 h1 {
-  font-size: 4.8rem;
+  font-size: 4rem;
+  text-align: center;
 }
 
 h2 {
@@ -393,5 +398,29 @@ h4 {
 }
 .formulario .songs .campo:last-of-type {
   margin-bottom: 0;
+}
+
+.barra {
+  padding: 4rem;
+  background-color: #e1e1e1;
+}
+@media (min-width: 768px) {
+  .barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+@media (min-width: 768px) {
+  .barra .navegacion {
+    display: flex;
+    gap: 2rem;
+  }
+}
+.barra .navegacion .navegacion__enlace {
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #784D3C;
 }
 /*# sourceMappingURL=app.css.map */
