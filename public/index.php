@@ -11,6 +11,8 @@ include DIR_ROOT . '/Routes/routesPrueba.php';
 
 $router->get('/', [IndexController::class, 'index']);
 $router->get('/musica', [IndexController::class, 'musica']);
+$router->get('/comics', [IndexController::class, 'comics']);
+$router->get('/peliculas', [IndexController::class, 'peliculas']);
 
 
 $router->comprobarRutas();

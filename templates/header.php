@@ -38,6 +38,8 @@ $background = imageOfTheDay();
                 <nav class="navegacion">
                     <a href="/" class="navegacion__enlace">Programas</a>
                     <a href="/musica" class="navegacion__enlace">Música</a>
+                    <a href="/comics" class="navegacion__enlace">Cómics</a>
+                    <a href="/peliculas" class="navegacion__enlace">Películas</a>
                 </nav>
             </div>
         </div>

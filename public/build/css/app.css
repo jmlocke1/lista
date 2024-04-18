@@ -488,4 +488,13 @@ h4 {
   color: #000000;
   font-weight: 700;
 }
+
+.tabla {
+  margin: 2rem 0;
+}
+@media (min-width: 1024px) {
+  .tabla {
+    margin: 2rem 1rem;
+  }
+}
 /*# sourceMappingURL=app.css.map */
