@@ -38,6 +38,7 @@ class Config {
 		'/',
         '/musica',
         '/comics',
-        '/peliculas'
+        '/peliculas',
+        '/readdisk'
 	];
 }
