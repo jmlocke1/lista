@@ -45,4 +45,11 @@ class IndexController {
             'javascriptPersonal' => Plugins::DATATABLES_JS
         ]);
     }
+    public static function readdisk(array $args) {
+        $router = $args['router'];
+        $router->render('index/readdisk', [
+            'title' => 'Leyendo MP3',
+            'typeList' => 'Películas'
+        ]);
+    }
 }
