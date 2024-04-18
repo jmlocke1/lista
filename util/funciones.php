@@ -60,7 +60,7 @@ function imageOfTheDay($type = 'jpg', $offset = 0): string {
 
 function getIndexOfScript() {
 	$offset = 0;
-	$script = basename($_SERVER['SCRIPT_FILENAME']);
+	$script = $_SERVER['REQUEST_URI'];
 	$index = array_search($script, Config::PAGES);
 	if(is_int($index)){
 		$offset = $index;
