@@ -51,14 +51,3 @@
     }
 }
 
-.main__boton {
-    @include m.boton(v.$primario, v.$blanco);
-    text-transform: uppercase;
-    display: block;
-    margin: 2rem auto;
-    @include m.tablet{
-        display: inline-block;
-        margin: 2rem;
-        width: auto;
-    }
-}

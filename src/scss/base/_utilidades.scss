@@ -15,31 +15,32 @@
 }
 
 .boton {
-	display: block;
-	font-family: v.$fuenteHeading;
-	color: v.$blanco;
-	font-size: 1.8rem;
-	font-weight: 700;
-	text-align: center;
-	padding: 1rem 3rem;
-	text-transform: uppercase;
-	margin-bottom: 2rem;
-	border: none;
-}
-@media(min-width: 768px) {
-	.boton {
-		display: inline-block;
+	&__principal {
+		@include m.boton(v.$primario, v.$blanco);
+	}
+	&__secundario {
+		@include m.boton(v.$secundario, v.$blanco);
+	}
+    &__principal,
+	&__secundario {
+		display: block;
+		text-transform: uppercase;
+    	margin: 2rem auto;
+		@include m.tablet{
+			display: inline-block;
+			margin: 2rem;
+        	width: auto;
+		}
 	}
 }
-.boton:hover {
-	cursor: pointer;
+// Corregir la diferencia de tamaño entre un input y un a
+a {
+	&.boton__principal,
+	&.boton__secundario{
+		padding: .735rem 4rem;
+	}
 }
-.boton--primario {
-	background-color: v.$negro;
-}
-.boton--secundario {
-	background-color: v.$primario;
-}
+
 .center__block {
 	margin: 0 auto;
 }

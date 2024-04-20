@@ -372,6 +372,77 @@ h4 {
   font-size: 2.8rem;
 }
 
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.centrar-texto {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.boton__principal {
+  background-color: #784D3C;
+  padding: 1.5rem 4rem;
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 90%;
+  display: inline-block;
+}
+.boton__principal:hover {
+  background-color: #56372b;
+  cursor: pointer;
+}
+.boton__secundario {
+  background-color: #ecb612;
+  padding: 1.5rem 4rem;
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 90%;
+  display: inline-block;
+}
+.boton__secundario:hover {
+  background-color: #bd910e;
+  cursor: pointer;
+}
+.boton__principal, .boton__secundario {
+  display: block;
+  text-transform: uppercase;
+  margin: 2rem auto;
+}
+@media (min-width: 768px) {
+  .boton__principal, .boton__secundario {
+    display: inline-block;
+    margin: 2rem;
+    width: auto;
+  }
+}
+
+a.boton__principal, a.boton__secundario {
+  padding: 0.735rem 4rem;
+}
+
+.center__block {
+  margin: 0 auto;
+}
+
 .formulario {
   background-color: #ffffff;
   margin: 0 auto;
@@ -413,34 +484,6 @@ h4 {
 }
 .formulario .songs .campo:last-of-type {
   margin-bottom: 0;
-}
-
-.main__boton {
-  background-color: #784D3C;
-  padding: 1.5rem 4rem;
-  color: #ffffff;
-  font-size: 1.8rem;
-  font-weight: 700;
-  border: none;
-  transition-property: background-color;
-  transition-duration: 0.3s;
-  text-align: center;
-  width: 90%;
-  display: inline-block;
-  text-transform: uppercase;
-  display: block;
-  margin: 2rem auto;
-}
-.main__boton:hover {
-  background-color: #56372b;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  .main__boton {
-    display: inline-block;
-    margin: 2rem;
-    width: auto;
-  }
 }
 
 .nombre-sitio {
