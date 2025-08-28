@@ -205,7 +205,7 @@ require DIR_ROOT.'/templates/header.php';
             </fieldset>
             <div class="mt-2">
                 <input class="boton__principal " type="submit" value="Enviar">
-                <a class="boton__secundario " src="/musica">Volver a Música</a>
+                <a class="boton__secundario " href="/musica">Volver a Música</a>
             </div>
             
         </form>
