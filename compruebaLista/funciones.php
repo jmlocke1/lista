@@ -85,7 +85,7 @@ function scan(array $dirs, string $root, string $archivo_bueno, string $archivo_
         if(is_dir($possibleFile)){
             scan(scandir($possibleFile), $possibleFile, $archivo_bueno, $archivo_error);
         }else{
-            // Es un fichero, comprobemos su extensión
+            // Es un fichero, comprobemos su extensión para ejecutar la función adecuada
             $ext = strtolower(pathinfo($possibleFile, PATHINFO_EXTENSION));
             if($ext === "rar" || $ext === "cbr"){
                 testRar($possibleFile, $archivo_bueno, $archivo_error);
