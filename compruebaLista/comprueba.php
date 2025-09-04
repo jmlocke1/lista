@@ -1,21 +1,34 @@
 <?php
 include "compruebalista/funciones.php";
-$archivo_error = "h:/testear/logs/error.txt";
-$archivo_bueno = "h:/testear/logs/bueno.txt";
+$dir_logs = "h:/testear/logs"; // Directorio donde se guardarán los logs de salida del programa
 $iniciar = "m:/Cómics";
 $backup = "d:/Cómics";
 $make_backup = true;
 
-$nombre_archivo = "m:/Cómics/Baguña Hermanos/Junior Films - Baguña Hermanos S. L. (1946-1948)/Junior films (Revista)(Ed.Baguña Hermanos)(1946) [Completo][Biblioteca Artium][CRG][lamansion-crg.net].tar";
-//$salida = shell_exec("tar -tvf " . escapeshellarg($nombre_archivo) . " --force-local 2>&1");
-$salida = shell_exec("tar -tvf \"" . $nombre_archivo . "\" --force-local 2>&1");
-var_dump($salida);
+$testear = new Testear(
+    $dir_logs,
+    $iniciar,
+    $backup,
+    $make_backup
+);
+
+$dir = "h:/pru";
+$testear->deleteDirectory($dir);
+die();
+$nombre_archivo = "m:/Cómics/Astiberri Ediciones/Urbano. - Mi colega invita - Astiberri (2003)/Urbano 01 - Mi colega invita - de Bernardo Vergara - cilurnigo.cbz";
+ $salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
+ var_dump($salida);
+ $salida = shell_exec("unrar t \"" . $nombre_archivo . "\" 2>&1");
+ var_dump($salida);
+// $nombre_archivo = "m:/Cómics/Baguña Hermanos/Junior Films - Baguña Hermanos S. L. (1946-1948)/Junior films (Revista)(Ed.Baguña Hermanos)(1946) [Completo][Biblioteca Artium][CRG][lamansion-crg.net].tar";
+// //$salida = shell_exec("tar -tvf " . escapeshellarg($nombre_archivo) . " --force-local 2>&1");
+// $salida = shell_exec("tar -tvf \"" . $nombre_archivo . "\" --force-local 2>&1");
+// var_dump($salida);
 die();
 
 
 $testear = new Testear(
-    $archivo_bueno,
-    $archivo_error,
+    $dir_logs,
     $iniciar,
     $backup,
     $make_backup
@@ -28,19 +41,25 @@ die();
 scan(scandir($iniciar), $iniciar, $archivo_bueno, $archivo_error);
 
 class Testear {
-    
+    public string $archivo_bueno;
+    public string $archivo_error;
+    public string $zip_rar_cambiados;
     public function __construct(
-        public string $archivo_bueno,
-        public string $archivo_error,
+        public string $dir_logs,
         public string $iniciar,
         public string $backup,
-        public string $make_backup,
-    ){}
+        public bool $make_backup,
+    ){
+        if(!file_exists($dir_logs)) mkdir($dir_logs, 0770, true);
+        $time = time();
+        $this->archivo_bueno = $dir_logs . "/bueno" . $time . ".txt";
+        $this->archivo_error = $dir_logs . "/error" . $time . ".txt";
+        $this->zip_rar_cambiados = $dir_logs . "/zip_rar_cambiados" . $time . ".txt";
+    }
 
     public function scan(array $scandir){
         var_dump($scandir);
     }
-
 
     
     public function creaDir(string $nombre_archivo): string{
@@ -62,8 +81,8 @@ class Testear {
             file_put_contents($this->archivo_bueno, $nombre_archivo . "\n", FILE_APPEND);
         } else {
             file_put_contents($this->archivo_error, $nombre_archivo . "\n" . $salida . "\n", FILE_APPEND);
-            // Creamos el directorio
-            creaDir($nombre_archivo);
+            // Creamos el directorio, si procede
+            if($this->make_backup) creaDir($nombre_archivo);
         }
     }
 
@@ -72,9 +91,34 @@ class Testear {
         if(str_contains($salida, "At least one error was detected")) {
             file_put_contents($this->archivo_error, $nombre_archivo . "\n" . $salida . "\n", FILE_APPEND);
             // Creamos el directorio
-            creaDir($nombre_archivo);
+            if($this->make_backup) creaDir($nombre_archivo);
         } else {
             file_put_contents($this->archivo_bueno, $nombre_archivo . "\n", FILE_APPEND);
         }
     }
+
+    public function deleteDirectory($dir) {
+        echo $dir ."\n";
+        if (!file_exists($dir)) {
+            return true;
+        }
+        if (!is_dir($dir)) {
+            echo "Eliminando {$dir}\n";
+            return unlink($dir);
+        }
+        $dirs = scandir($dir);
+        var_dump($dirs);
+        foreach ($dirs as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+            echo $item . "\n";
+            if (!$this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+        echo "Eliminando {$dir}\n";
+        return rmdir($dir);
+    }
+
 }
