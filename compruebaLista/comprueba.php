@@ -5,16 +5,7 @@ $iniciar = "m:/Cómics";
 $backup = "d:/Cómics";
 $make_backup = true;
 
-$testear = new Testear(
-    $dir_logs,
-    $iniciar,
-    $backup,
-    $make_backup
-);
 
-$dir = "h:/pru";
-$testear->deleteDirectory($dir);
-die();
 $nombre_archivo = "m:/Cómics/Astiberri Ediciones/Urbano. - Mi colega invita - Astiberri (2003)/Urbano 01 - Mi colega invita - de Bernardo Vergara - cilurnigo.cbz";
  $salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
  var_dump($salida);
@@ -98,26 +89,21 @@ class Testear {
     }
 
     public function deleteDirectory($dir) {
-        echo $dir ."\n";
         if (!file_exists($dir)) {
             return true;
         }
         if (!is_dir($dir)) {
-            echo "Eliminando {$dir}\n";
             return unlink($dir);
         }
-        $dirs = scandir($dir);
-        var_dump($dirs);
-        foreach ($dirs as $item) {
+        
+        foreach (scandir($dir) as $item) {
             if ($item == '.' || $item == '..') {
                 continue;
             }
-            echo $item . "\n";
             if (!$this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
                 return false;
             }
         }
-        echo "Eliminando {$dir}\n";
         return rmdir($dir);
     }
 
