@@ -1,8 +1,8 @@
 <?php
-include "compruebalista/funciones.php";
 $dir_logs = "h:/testear/logs"; // Directorio donde se guardarán los logs de salida del programa
 $iniciar = "m:/Cómics";
 $backup = "d:/Cómics";
+$make_backup = true;
 // Cuando un rar es correcto, se supone que el mensaje siempre incluye un Todo correcto
 $rar_msg = "Todo correcto";
 // El mensaje de un zip es similar, cuando está bien, se supone que siempre dice lo mismo, pero en caso
@@ -11,22 +11,19 @@ $zip_msg = "No errors detected";
 // En el caso del tar, cuando no hay errores no dice ningún mensaje, y se supone que siempre
 // dice lo mismo en caso de error, pero aún no estoy seguro. Tendré que hacer varias pruebas
 $tar_msg = "Exiting with failure status due to previous errors";
-$make_backup = true;
 
 
-$nombre_archivo = "m:/Cómics/Antonio Ivars Portabella/Orlando Príncipe de las tinieblas - Antonio Ivars (1965)/Orlando principe de las tinieblas 25 [por Fariña].cbz";
-$salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
-var_dump($salida);
-$salida = shell_exec("unrar t \"" . $nombre_archivo . "\" 2>&1");
+// $nombre_archivo = "m:/Cómics/Antonio Ivars Portabella/Orlando Príncipe de las tinieblas - Antonio Ivars (1965)/Orlando principe de las tinieblas 25 [por Fariña].cbz";
+// $salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
+// var_dump($salida);
+// $salida = shell_exec("unrar t \"" . $nombre_archivo . "\" 2>&1");
 //  var_dump($salida);
-// $nombre_archivo = "m:/Cómics/Buru Lan S.A. de Ediciones/Rip Kirby - Buru Lan 1976/Rip Kirby (Color) (Ed.Buru Lan)(1976) [Completo][por cacolus262][CRG][lamansion-crg.net].tar";
-// $salida = shell_exec("tar -tvf " . escapeshellarg($nombre_archivo) . " --force-local 2>&1");
-// $dir_destino = "z:/tarex";
 
-//$salida = shell_exec("tar -xf " . escapeshellarg($nombre_archivo)  . " -C " . escapeshellarg($dir_destino) . " --force-local 2>&1");
-echo "Mostrando la salida\n";
-var_dump($salida);
-die();
+// $nombre_archivo = "J:\Cómics\Editorial Novaro\Supermán\Supermán y sus amigos - Novaro (1956-1958)\Superman y Sus Amigos (Ediciones Recreativas)(1956-58) [Completo][Escaneo][CRG][lamansion-crg.net].tar";
+// $salida = shell_exec("tar -tvf " . escapeshellarg($nombre_archivo) . " --force-local 2>&1");
+// echo "Mostrando la salida\n";
+// var_dump($salida);
+// die();
 
 
 $testear = new Testear(
@@ -84,8 +81,7 @@ class Testear {
      * Hay un caso especial, que es cuando el fichero no es un rar. Hay ocasiones en que los ficheros están como cbr, pero realmente son zips
      */
     public function testRar($nombre_archivo) {
-        $salida = shell_exec("unrar t \"" . $nombre_archivo . "\" 2>&1"); // Hay que escapar las dobles comillas y evitar poner escapeshellarg para que funcione bien
-        if(str_contains($salida, $this->rar_msg)) {
+        if($this->rarCorrecto($nombre_archivo)) {
             file_put_contents($this->archivo_bueno, $nombre_archivo . "\n", FILE_APPEND);
         } else {
             file_put_contents($this->archivo_error, $nombre_archivo . "\n" . $salida . "\n", FILE_APPEND);
@@ -94,9 +90,13 @@ class Testear {
         }
     }
 
-    function testZip($nombre_archivo) {
-        $salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
-        if(str_contains($salida, $this->zip_msg)) {
+    public function rarCorrecto($nombre_archivo) {
+        $salida = shell_exec("unrar t \"" . $nombre_archivo . "\" 2>&1"); // Hay que escapar las dobles comillas y evitar poner escapeshellarg para que funcione bien
+        return str_contains($salida, $this->rar_msg);
+    }
+
+    public function testZip($nombre_archivo) {
+        if($this->zipCorrecto($nombre_archivo)) {
             file_put_contents($this->archivo_bueno, $nombre_archivo . "\n", FILE_APPEND);
         } else {
             file_put_contents($this->archivo_error, $nombre_archivo . "\n" . $salida . "\n", FILE_APPEND);
@@ -105,7 +105,12 @@ class Testear {
         }
     }
 
-    function testTar($nombre_archivo) {
+    public function zipCorrecto($nombre_archivo){
+        $salida = shell_exec("unzip -tq " . escapeshellarg($nombre_archivo) . " 2>&1");
+        return str_contains($salida, $this->zip_msg);
+    }
+
+    public function testTar($nombre_archivo) {
         $salida = shell_exec("tar -tvf " . escapeshellarg($nombre_archivo) . " --force-local 2>&1");
         if(str_contains($salida, $this->tar_msg)) {
             file_put_contents($this->archivo_error, $nombre_archivo . "\n" . $salida . "\n", FILE_APPEND);
